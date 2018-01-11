@@ -18,7 +18,7 @@ export class ConsoleLogAppender implements LogAppender{
    **************************************************************************/
 
   constructor(forceIe = false){
-    this.isIE = forceIe || navigator.appName == 'Microsoft Internet Explorer' ||
+    this.isIE = forceIe || navigator.appName === 'Microsoft Internet Explorer' ||
       !!(navigator.userAgent.match(/Trident/) ||
         navigator.userAgent.match(/rv:11/));
   }
