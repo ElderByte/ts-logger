@@ -29,8 +29,8 @@ export class ConsoleLogAppender implements LogAppender{
    *                                                                         *
    **************************************************************************/
 
-  public appendLog(level: LogLevel, formattedMessage: string, additional: any[]): void {
-    this.log(level, formattedMessage, additional);
+  public appendLog(level: LogLevel, messagePrefix: string, message: string, additional: any[]): void {
+    this.log(level, messagePrefix, message, additional);
   }
 
   /***************************************************************************
@@ -40,13 +40,13 @@ export class ConsoleLogAppender implements LogAppender{
    **************************************************************************/
 
 
-  private log(level: LogLevel, formattedMessage: string, additional: any[]): void {
+  private log(level: LogLevel, messagePrefix: string, message: string, additional: any[]): void {
     // Coloring doesn't work in IE
     if (this.isIE) {
-      this.logIE(level, formattedMessage, additional);
+      this.logIE(level, messagePrefix + ' ' + message, additional);
     }else {
       const color = this.getColor(level);
-      console.log(`%c${formattedMessage}`, `color:${color}`, ...additional);
+      console.log(`%c${messagePrefix} `, `color:${color}`, message, ...additional);
     }
   }
 

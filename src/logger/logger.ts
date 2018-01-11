@@ -63,14 +63,16 @@ export class Logger {
           message = 'circular object in message. ';
         }
       }
-      const formatedMessage = this.formatMessage(level, this.tag, new Date(), message);
-      this.config.appender.appendLog(level, formatedMessage, additional);
+
+      const prefix = this.formatMessagePrefix(level, this.tag, new Date());
+
+      this.config.appender.appendLog(level, prefix, message, additional);
     }
   }
 
-  private formatMessage(level: LogLevel, tag: string, timestamp: Date, message: string): string {
+  private formatMessagePrefix(level: LogLevel, tag: string, timestamp: Date): string {
     if(this.config.formatter){
-      return this.config.formatter.formatMessage(level, tag, timestamp, message);
+      return this.config.formatter.formatMessagePrefix(level, tag, timestamp);
     }else{
       throw new Error('No log message formatter is configured!');
     }
