@@ -5,14 +5,17 @@
 
 # TypeScript logger
 
+A simple but highly customizable TypeScript logger, bundled with rollup in es5 format.
+Works well with Angular 5 Apps and AOT compilation.
+
+
 # Installation
 
 Install via NPM: `npm i --save @elderbyte/ts-logger`
 
-
 # Usage
 
-```
+```typescript
 import {LoggerFactory} from '@elderbyte/ts-logger';
 
 class MyClass {
@@ -34,7 +37,7 @@ Each `LoggerFactory` instance can be configured independently. There is however 
 
 You can configure the max log level, custom appenders and message formatter. All of these are optional.
 
-```
+```typescript
 LoggerFactory.getDefaultConfiguration()
       .withMaxLevel(LogLevel.Trace) // Defaults to Info
       .withAppender(new ConsoleLogAppender()) // Same as default
