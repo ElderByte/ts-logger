@@ -1,8 +1,6 @@
-import {LogAppender} from './appenders/log-appender';
-import {ConsoleLogAppender} from './appenders/console-log-appender';
+import {LogAppender, ConsoleLogAppender} from './appenders/index';
 import {Logger} from './logger';
-import {MessageFormatter} from './format/message-formatter';
-import {SimpleMessageFormatter} from './format/simple-message-formatter';
+import {MessageFormatter, SimpleMessageFormatter} from './format/index';
 
 export enum LogLevel {
   Trace,

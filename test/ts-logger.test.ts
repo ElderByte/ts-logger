@@ -1,4 +1,4 @@
-import DummyClass from "../src/ts-logger"
+import {Logger, LoggerFactory} from '../src/logger/index';
 
 /**
  * Dummy test
@@ -8,7 +8,7 @@ describe("Dummy test", () => {
     expect(true).toBeTruthy()
   })
 
-  it("DummyClass is instantiable", () => {
-    expect(new DummyClass()).toBeInstanceOf(DummyClass)
+  it("LoggerFactory getLogger instantiable", () => {
+    expect(LoggerFactory.getLogger('default')).toBeInstanceOf(Logger)
   })
 })
