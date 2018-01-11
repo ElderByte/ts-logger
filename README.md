@@ -29,6 +29,12 @@ class MyClass {
 
 ```
 
+Will result in a log like:
+
+> 2018-01-11T14:28:49.401Z [DEBUG] MyClass  You invoked myMethod!
+
+Browser which support coloring will also have different colors depending on the log level.
+
 # Configuration
 
 Configuration is provided with default values to support out of the box working logging expirience.
