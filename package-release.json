@@ -1,0 +1,27 @@
+{
+  "name": "@elderbyte/ts-logger",
+  "version": "0.0.1",
+  "description": "TypeScript logger library.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ElderByte-/ts-logger"
+  },
+  "author": {
+    "name": "ElderByte",
+    "email": "info@elderbyte.com"
+  },
+  "keywords": [
+    "typescript",
+    "logging"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ElderByte-/ts-logger/issues"
+  },
+  "main": "ts-logger.umd.js",
+  "module": "ts-logger.js",
+  "jsnext:main": "ts-logger.js",
+  "typings": "ts-logger.d.ts",
+  "peerDependencies": {
+  }
+}

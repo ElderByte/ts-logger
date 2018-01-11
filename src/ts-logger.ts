@@ -1,6 +1,11 @@
-// Import here Polyfills if needed. Recommended core-js (npm i -D core-js)
-  // import "core-js/fn/array.find"
-  // ...
-export default class DummyClass {
 
+export default class LoggerFactory {
+
+  public static getLogger(name: string): any {
+    return null;
+  }
+
+  public helloWorld(): string {
+    return 'hello world from ts library';
+  }
 }
