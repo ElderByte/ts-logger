@@ -17,8 +17,8 @@ export class ConsoleLogAppender implements LogAppender{
    *                                                                         *
    **************************************************************************/
 
-  constructor(){
-    this.isIE = navigator.appName == 'Microsoft Internet Explorer' ||
+  constructor(forceIe = false){
+    this.isIE = forceIe || navigator.appName == 'Microsoft Internet Explorer' ||
       !!(navigator.userAgent.match(/Trident/) ||
         navigator.userAgent.match(/rv:11/));
   }
@@ -40,31 +40,30 @@ export class ConsoleLogAppender implements LogAppender{
    **************************************************************************/
 
 
-  private log(level: LogLevel, formattedMessage: string, additional: any[]) {
-
-
+  private log(level: LogLevel, formattedMessage: string, additional: any[]): void {
     // Coloring doesn't work in IE
     if (this.isIE) {
-      return this.logIE(level, formattedMessage, additional);
+      this.logIE(level, formattedMessage, additional);
+    }else {
+      const color = this.getColor(level);
+      console.log(`%c${formattedMessage}`, `color:${color}`, ...additional);
     }
-
-    const color = this.getColor(level);
-    console.log(`%c${formattedMessage}`, `color:${color}`, ...additional);
   }
 
-  private logIE(level: LogLevel, formattedMessage: string, additional: any[]) {
+  private logIE(level: LogLevel, formattedMessage: string, additional: any[]): void {
     switch (level) {
+      case LogLevel.Info:
+        console.info(formattedMessage, ...additional);
+        break;
       case LogLevel.Warn:
         console.warn(formattedMessage, ...additional);
         break;
       case LogLevel.Error:
         console.error(formattedMessage, ...additional);
         break;
-      case LogLevel.Info:
-        console.info(formattedMessage, ...additional);
-        break;
       default:
         console.log(formattedMessage, ...additional);
+        break;
     }
   }
 
@@ -80,8 +79,6 @@ export class ConsoleLogAppender implements LogAppender{
         return 'orange';
       case LogLevel.Error:
         return 'red';
-      default:
-        return 'black';
     }
   }
 

@@ -42,10 +42,7 @@ export class Logger {
 
   public log(level: LogLevel, message: any, ...additional: any[]): void {
     if(level < this.config.maxLevel) return;
-
-    if (!message) {
-      return;
-    }
+    if (!message) { return; }
 
     this.logInternal(level, message, additional);
   }
@@ -70,7 +67,7 @@ export class Logger {
       this.config.appender.appendLog(level, formatedMessage, additional);
     }
   }
-  
+
   private formatMessage(level: LogLevel, tag: string, timestamp: Date, message: string): string {
     if(this.config.formatter){
       return this.config.formatter.formatMessage(level, tag, timestamp, message);

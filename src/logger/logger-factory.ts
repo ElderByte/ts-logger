@@ -22,6 +22,22 @@ export class LoggerConfiguration {
     this.formatter = new SimpleMessageFormatter();
     this.maxLevel = LogLevel.Info;
   }
+
+  public withMaxLevel(maxLevel: LogLevel): this {
+    this.maxLevel = maxLevel;
+    return this;
+  }
+
+  public withFormatter(formatter: MessageFormatter): this {
+    this.formatter = formatter;
+    return this;
+  }
+
+  public withAppender(appender: LogAppender): this {
+    this.appender = appender;
+    return this;
+  }
+
 }
 
 export class LoggerFactory {
@@ -54,6 +70,10 @@ export class LoggerFactory {
 
   public static getLogger(name: string): Logger {
     return LoggerFactory.Default.getLogger(name);
+  }
+
+  public static getDefaultConfiguration(): LoggerConfiguration {
+    return LoggerFactory.Default.getConfiguration();
   }
 
   /***************************************************************************
