@@ -21,26 +21,26 @@ export class Logger {
    **************************************************************************/
 
   public trace(message: any, ...additional: any[]): void {
-    this.log(LogLevel.Trace, message, additional);
+    this.log(LogLevel.Trace, message, ...additional);
   }
 
   public debug(message: any, ...additional: any[]): void {
-    this.log(LogLevel.Debug, message, additional);
+    this.log(LogLevel.Debug, message, ...additional);
   }
 
   public info(message: any, ...additional: any[]): void {
-    this.log(LogLevel.Info, message, additional);
+    this.log(LogLevel.Info, message, ...additional);
   }
 
   public warn(message: any, ...additional: any[]): void {
-    this.log(LogLevel.Warn, message, additional);
+    this.log(LogLevel.Warn, message, ...additional);
   }
 
   public error(message: any, ...additional: any[]): void {
-    this.log(LogLevel.Error, message, additional);
+    this.log(LogLevel.Error, message, ...additional);
   }
 
-  public log(level: LogLevel, message: any, ...additional: any[]) {
+  public log(level: LogLevel, message: any, ...additional: any[]): void {
     if(level < this.config.maxLevel) return;
 
     if (!message) {
@@ -56,27 +56,27 @@ export class Logger {
    *                                                                         *
    **************************************************************************/
 
-  private logInternal(level: LogLevel, message: any, ...additional: any[]) {
-
-    if (typeof message === 'object') {
-      try {
-        message = JSON.stringify(message, null, 2);
-      } catch (e) {
-        additional = [message, ...additional];
-        message = 'circular object in message. ';
+  private logInternal(level: LogLevel, message: any, additional: any[] = []): void {
+    if (this.config.appender) {
+      if (typeof message === 'object') {
+        try {
+          message = JSON.stringify(message, null, 2);
+        } catch (e) {
+          additional = [message, ...additional];
+          message = 'circular object in message. ';
+        }
       }
+      const formatedMessage = this.formatMessage(level, this.tag, new Date(), message);
+      this.config.appender.appendLog(level, formatedMessage, additional);
     }
-    const formated = this.formatMessage(level, this.tag, new Date(), message);
-    this.appendLog(level, formated, additional);
   }
-
-  private appendLog(level: LogLevel, formatedMessage: string, ...additional: any[]){
-    this.config.appender.appendLog(level, this.tag, formatedMessage, additional);
-  }
-
-
-  private formatMessage(level: LogLevel, tag: string, timestamp: Date, message: string) {
-    // TODO Support custom formatters
-    return `${timestamp.toISOString()} [${LogLevel[level].toUpperCase()}] ${tag} - ${message}`;
+  
+  private formatMessage(level: LogLevel, tag: string, timestamp: Date, message: string): string {
+    if(this.config.formatter){
+      return this.config.formatter.formatMessage(level, tag, timestamp, message);
+    }else{
+      throw new Error('No log message formatter is configured!');
+    }
   }
 }
+

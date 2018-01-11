@@ -1,6 +1,6 @@
 {
   "name": "@elderbyte/ts-logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "TypeScript logger library.",
   "repository": {
     "type": "git",

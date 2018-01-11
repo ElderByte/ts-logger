@@ -1,6 +1,8 @@
 import {LogAppender} from './appenders/log-appender';
 import {ConsoleLogAppender} from './appenders/console-log-appender';
 import {Logger} from './logger';
+import {MessageFormatter} from './format/message-formatter';
+import {SimpleMessageFormatter} from './format/simple-message-formatter';
 
 export enum LogLevel {
   Trace,
@@ -14,10 +16,12 @@ export enum LogLevel {
 export class LoggerConfiguration {
 
   public appender: LogAppender;
+  public formatter: MessageFormatter;
   public maxLevel: LogLevel;
 
   constructor(){
     this.appender = new ConsoleLogAppender();
+    this.formatter = new SimpleMessageFormatter();
     this.maxLevel = LogLevel.Info;
   }
 }

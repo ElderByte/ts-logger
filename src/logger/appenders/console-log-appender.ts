@@ -29,8 +29,8 @@ export class ConsoleLogAppender implements LogAppender{
    *                                                                         *
    **************************************************************************/
 
-  public appendLog(level: LogLevel, tag: string, formattedMessage: string, ...args: any[]): void {
-    this.log(level, tag, formattedMessage, args);
+  public appendLog(level: LogLevel, formattedMessage: string, additional: any[]): void {
+    this.log(level, formattedMessage, additional);
   }
 
   /***************************************************************************
@@ -40,7 +40,7 @@ export class ConsoleLogAppender implements LogAppender{
    **************************************************************************/
 
 
-  private log(level: LogLevel, tag: string, formattedMessage: string, additional: any[] = []) {
+  private log(level: LogLevel, formattedMessage: string, additional: any[]) {
 
 
     // Coloring doesn't work in IE
