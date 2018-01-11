@@ -2,7 +2,6 @@ import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
 import camelCase from 'lodash.camelcase'
-import copy from 'rollup-plugin-copy';
 import typescript from 'rollup-plugin-typescript2'
 
 const pkg = require('./package.json')
@@ -23,12 +22,6 @@ export default {
   },
   plugins: [
 
-    // Copy static assets
-    copy({
-      "package-release.json": "dist/package.json",
-      verbose: true
-    }),
-
     // Compile TypeScript files
     typescript(),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
@@ -39,6 +32,6 @@ export default {
     resolve(),
 
     // Resolve source maps to the original source
-    sourceMaps(),
+    sourceMaps()
   ],
 }
