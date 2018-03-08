@@ -5,8 +5,12 @@
 
 # TypeScript logger
 
-A simple but highly customizable TypeScript logger, bundled with rollup in es5 format.
-Works well with Angular 5 Apps and AOT compilation.
+A simple but highly customizable TypeScript logger.
+ 
+* Bundled with rollup in es5 format.
+* Configure once - if used in libraries you consume, the main app can configure the logger globally
+* Works well with other frameworks. 
+* Angular 5 Apps and AOT compilation is supported.
 
 
 # Installation
