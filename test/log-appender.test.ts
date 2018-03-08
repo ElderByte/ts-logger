@@ -13,22 +13,22 @@ describe("ConsoleLogAppender test", () => {
   });
 
   it("ConsoleLogAppender.IE.appendLog", () => {
-    expect(ieAppender.appendLog(LogLevel.Trace, 'msg',[])).toBe(undefined)
+    expect(ieAppender.appendLog(LogLevel.Trace, 'pre','msg',[])).toBe(undefined)
   });
 
   it("ConsoleLogAppender.IE.appendLog", () => {
-    expect(ieAppender.appendLog(LogLevel.Debug, 'msg',[])).toBe(undefined)
+    expect(ieAppender.appendLog(LogLevel.Debug, 'pre','msg',[])).toBe(undefined)
   });
 
   it("ConsoleLogAppender.IE.appendLog", () => {
-    expect(ieAppender.appendLog(LogLevel.Info, 'msg',[])).toBe(undefined)
+    expect(ieAppender.appendLog(LogLevel.Info, 'pre','msg',[])).toBe(undefined)
   });
 
   it("ConsoleLogAppender.IE.appendLog", () => {
-    expect(ieAppender.appendLog(LogLevel.Warn, 'msg',[])).toBe(undefined)
+    expect(ieAppender.appendLog(LogLevel.Warn, 'pre','msg',[])).toBe(undefined)
   });
 
   it("ConsoleLogAppender.IE.appendLog", () => {
-    expect(ieAppender.appendLog(LogLevel.Error, 'msg', [new Error('te')])).toBe(undefined)
+    expect(ieAppender.appendLog(LogLevel.Error, 'pre','msg', [new Error('te')])).toBe(undefined)
   });
 });
