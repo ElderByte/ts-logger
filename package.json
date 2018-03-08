@@ -18,6 +18,7 @@
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist && copyfiles -u 1 src/*.json dist",
     "build": "tsc --module commonjs --outDir dist/lib && rollup -c rollup.config.ts && typedoc --out dist/docs --target es6 --theme minimal --mode file src",
+    "debug": "tsc --module commonjs --outDir dist/lib",
     "start": "rollup -c rollup.config.ts -w",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -46,8 +47,7 @@
         "statements": 50
       }
     },
-    "collectCoverage": true,
-    "mapCoverage": true
+    "collectCoverage": true
   },
   "devDependencies": {
     "@types/jest": "^22.0.0",
@@ -62,13 +62,13 @@
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.4.4",
     "prompt": "^1.0.0",
-    "replace-in-file": "^3.0.0-beta.2",
+    "replace-in-file": "^3.2.0",
     "rimraf": "^2.6.1",
-    "rollup": "^0.53.0",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup": "^0.56.5",
+    "rollup-plugin-commonjs": "^9.0.0",
+    "rollup-plugin-node-resolve": "^3.2.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-typescript2": "^0.9.0",
+    "rollup-plugin-typescript2": "^0.12.0",
     "copyfiles": "^1.2.0",
     "ts-jest": "^22.0.0",
     "ts-node": "^4.1.0",
@@ -76,6 +76,6 @@
     "tslint-config-prettier": "^1.1.0",
     "tslint-config-standard": "^7.0.0",
     "typedoc": "^0.9.0",
-    "typescript": "^2.6.2"
+    "typescript": "~2.6.2"
   }
 }
